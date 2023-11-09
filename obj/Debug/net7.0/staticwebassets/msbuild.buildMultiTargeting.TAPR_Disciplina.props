@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TAPR_Disciplina.props" />
+</Project>
