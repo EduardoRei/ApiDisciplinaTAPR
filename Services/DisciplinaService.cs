@@ -1,6 +1,6 @@
-﻿using DisciplinaProfessorAPI.Models;
+﻿using TAPR_Disciplina.Models;
 
-namespace DisciplinaProfessorAPI.Services {
+namespace TAPR_Disciplina.Services {
     public class DisciplinaService : IDisciplinaService {
         private RepositoryDbContext _dbContext;
         public DisciplinaService(RepositoryDbContext dbContext) {

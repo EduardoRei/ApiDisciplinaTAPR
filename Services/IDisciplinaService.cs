@@ -1,6 +1,6 @@
-﻿using DisciplinaProfessorAPI.Models;
+﻿using TAPR_Disciplina.Models;
 
-namespace DisciplinaProfessorAPI.Services {
+namespace TAPR_Disciplina.Services {
     public interface IDisciplinaService {
         Task<List<Disciplina>> GetAllAsync();
         Task<Disciplina> GetByIdAsync(string id);

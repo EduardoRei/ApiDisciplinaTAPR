@@ -1,7 +1,6 @@
-﻿namespace DisciplinaProfessorAPI.Models {
+﻿namespace TAPR_Disciplina.Models {
     public class Professor {
-        public long idProfessor { get; set; }
+        public Guid idProfessor { get; set; }
         public string nomeDoProfessor { get; set; }
-        public int horaDiariaDisponivel { get; set; }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using Azure.Identity;
 using Microsoft.Azure.Cosmos;
-using Microsoft.EntityFrameworkcore;
 using Microsoft.EntityFrameworkcore.ValueGeneration;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
-namespace DisciplinaProfessorAPI.Models {
+namespace TAPR_Disciplina.Models {
     public class RepositoryDbContext : DbContext {
         public DbSet<Disciplina> Carros { get; set; }
         private IConfiguration _configuration;
@@ -13,6 +13,7 @@ namespace DisciplinaProfessorAPI.Models {
             _configuration = configuration;
         }
 
+        /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseCosmos(
                 accountEndpoint: _configuration["CosmosDBURL"],
@@ -20,7 +21,8 @@ namespace DisciplinaProfessorAPI.Models {
                 databaseName: _configuration["CosmosDBDBName"],
                 options => { options.ConnectionMode(ConnectionMode.Gateway); });
         }
-
+        */
+        /*
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Disciplina>()
                 .HasNoDiscriminator();
@@ -31,7 +33,7 @@ namespace DisciplinaProfessorAPI.Models {
                 .HasValueGenerator<GuidValueGenerator>();
             modelBuilder.Entity<Disciplina>()
                 .HasPartitionKey(o => o.placa);
-
         }
+        */
     }
 }

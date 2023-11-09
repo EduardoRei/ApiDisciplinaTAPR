@@ -1,14 +1,15 @@
-﻿using DisciplinaProfessorAPI.Models;
-using DisciplinaProfessorAPI.Services;
+﻿
+using TAPR_Disciplina.Models;
+using TAPR_Disciplina.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace DisciplinaProfessorAPI.Controllers {
+namespace TAPR_Disciplina.Controllers {
     [ApiController]
     [Route("/api/v1[controller]")]
-    public class DisciplinaControler : ControllerBase {
+    public class DisciplinaController : ControllerBase {
         private IDisciplinaService _service;
-        public DisciplinaControler(IDisciplinaService service)
+        public DisciplinaController(IDisciplinaService service)
         {
             this._service = service;
         }
