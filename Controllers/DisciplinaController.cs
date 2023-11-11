@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TAPR_Disciplina.Controllers {
     [ApiController]
-    [Route("/api/v1[controller]")]
+    [Route("/api/v1/[controller]")]
     public class DisciplinaController : ControllerBase {
         private IDisciplinaService _service;
         public DisciplinaController(IDisciplinaService service)

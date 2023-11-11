@@ -2,12 +2,12 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace TAPR_Disciplina.Models {
     public class RepositoryDbContext : DbContext {
-        public DbSet<Disciplina> Carros { get; set; }
+        public DbSet<Disciplina> Disciplinas { get; set; }
+        public DbSet<Curso> Cursos {get; set;}
+        public DbSet<Professor> Professores {get; set;}
         private IConfiguration _configuration;
         public RepositoryDbContext(IConfiguration configuration) {
             _configuration = configuration;
@@ -21,21 +21,7 @@ namespace TAPR_Disciplina.Models {
                 databaseName: _configuration["CosmosDBDBName"],
                 options => { options.ConnectionMode(ConnectionMode.Gateway); });
         }
-        
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<Disciplina>()
-                .HasNoDiscriminator();
-            modelBuilder.Entity<Disciplina>()
-                .ToContainer("disciplina");
-            modelBuilder.Entity<Disciplina>()
-                .Property(p => p.id)
-                .HasValueGenerator<GuidValueGenerator>();
-            modelBuilder.Entity<Disciplina>()
-                .HasPartitionKey(o => o.placa);
-        }
-        */
-    
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Curso>()
                 .HasNoDiscriminator();

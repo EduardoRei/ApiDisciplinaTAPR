@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TAPR_Curso.Services;
 using TAPR_Disciplina.Models;
+using TAPR_Disciplina.Services;
 
-namespace TAPR_Curso.Controllers
+namespace TAPR_Disciplina.Controllers
 {
     [ApiController]
-    [Route("/api/v1[controller]")]
+    [Route("/api/v1/[controller]")]
     public class CursoController : ControllerBase
     {
         private ICursoService _service;

@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TAPR_Disciplina.Models;
 
-namespace TAPR_Curso.Services
+namespace TAPR_Disciplina.Services
 {
     public interface ICursoService
     {
