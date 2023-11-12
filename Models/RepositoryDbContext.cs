@@ -32,6 +32,8 @@ namespace TAPR_Disciplina.Models {
                 .HasValueGenerator<GuidValueGenerator>();
             modelBuilder.Entity<Curso>()
                 .HasPartitionKey(o => o.idCurso);
+            modelBuilder.Entity<Curso>()
+                .HasKey(c => c.idCurso);
         
             modelBuilder.Entity<Professor>()
                 .HasNoDiscriminator();
@@ -42,6 +44,8 @@ namespace TAPR_Disciplina.Models {
                 .HasValueGenerator<GuidValueGenerator>();
             modelBuilder.Entity<Professor>()
                 .HasPartitionKey(o => o.idProfessor);
+            modelBuilder.Entity<Professor>()
+                .HasKey(c => c.idProfessor);
 
             modelBuilder.Entity<Disciplina>()
                 .HasNoDiscriminator();
@@ -52,6 +56,8 @@ namespace TAPR_Disciplina.Models {
                 .HasValueGenerator<GuidValueGenerator>();
             modelBuilder.Entity<Disciplina>()
                 .HasPartitionKey(o => o.idDisciplina);
+            modelBuilder.Entity<Disciplina>()
+                .HasKey(c => c.idDisciplina);
         }
     
     }
