@@ -16,7 +16,12 @@ namespace TAPR_Disciplina.Services
         }
         public async Task<Curso> DeleteAsync(string id)
         {
-            throw new NotImplementedException();
+            var cursoAntigo = await _dbContext.Cursos.Where(c => c.idCurso.Equals(new Guid(id))).FirstOrDefaultAsync();
+            if(cursoAntigo != null){
+                _dbContext.Remove(cursoAntigo);
+                await _dbContext.SaveChangesAsync();
+            }
+            return cursoAntigo;
         }
 
         public async Task<List<Curso>> GetAllAsync()
@@ -27,17 +32,27 @@ namespace TAPR_Disciplina.Services
 
         public async Task<Curso> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var listaCursos = await _dbContext.Cursos.Where(c => c.idCurso.Equals(new Guid(id))).FirstOrDefaultAsync();
+            return listaCursos;
         }
 
         public async Task<Curso> saveNewAsync(Curso curso)
         {
-            throw new NotImplementedException();
+            curso.idCurso = Guid.Empty;
+            await _dbContext.Cursos.AddAsync(curso);
+            await _dbContext.SaveChangesAsync();
+            return curso;
         }
 
         public async Task<Curso> updateAsync(string id, Curso curso)
         {
-            throw new NotImplementedException();
+            var cursoAntigo = await _dbContext.Cursos.Where(c => c.idCurso.Equals(new Guid(id))).FirstOrDefaultAsync();
+            if(cursoAntigo != null){
+                cursoAntigo.nomeCurso = curso.nomeCurso;
+                cursoAntigo.periodoCurso = curso.periodoCurso;
+                await _dbContext.SaveChangesAsync();
+            }
+            return cursoAntigo;
         }
     }
 }
