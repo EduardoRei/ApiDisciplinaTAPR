@@ -32,8 +32,8 @@ namespace TAPR_Disciplina.Services
 
         public async Task<Curso> GetByIdAsync(string id)
         {
-            var listaCursos = await _dbContext.Cursos.Where(c => c.idCurso.Equals(new Guid(id))).FirstOrDefaultAsync();
-            return listaCursos;
+            var curso = await _dbContext.Cursos.Where(c => c.idCurso.Equals(new Guid(id))).FirstOrDefaultAsync();
+            return curso;
         }
 
         public async Task<Curso> saveNewAsync(Curso curso)

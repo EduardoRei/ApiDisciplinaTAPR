@@ -16,7 +16,12 @@ namespace TAPR_Disciplina.Services
         }
         public async Task<Professor> DeleteAsync(string id)
         {
-            throw new NotImplementedException();
+            var professorAntigo = await _dbContext.Professores.Where(c => c.idProfessor.Equals(new Guid(id))).FirstOrDefaultAsync();
+            if(professorAntigo != null){
+                _dbContext.Remove(professorAntigo);
+                await _dbContext.SaveChangesAsync();
+            }
+            return professorAntigo;
         }
 
         public async Task<List<Professor>> GetAllAsync()
@@ -27,17 +32,28 @@ namespace TAPR_Disciplina.Services
 
         public async Task<Professor> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var professor = await _dbContext.Professores.Where(c => c.idProfessor.Equals(new Guid(id))).FirstOrDefaultAsync();
+            return professor;
+
         }
 
         public async Task<Professor> saveNewAsync(Professor professor)
         {
-            throw new NotImplementedException();
+            professor.idProfessor = Guid.Empty;
+            await _dbContext.Professores.AddAsync(professor);
+            await _dbContext.SaveChangesAsync();
+
+            return professor;
         }
 
         public async Task<Professor> updateAsync(string id, Professor professor)
         {
-            throw new NotImplementedException();
+            var professorAntigo = await _dbContext.Professores.Where(c => c.idProfessor.Equals(new Guid(id))).FirstOrDefaultAsync();
+            if(professorAntigo != null){
+                professorAntigo.nomeDoProfessor = professor.nomeDoProfessor;
+                await _dbContext.SaveChangesAsync();
+            }
+            return professorAntigo;
         }
     }
 }
