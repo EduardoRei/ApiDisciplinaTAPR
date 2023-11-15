@@ -1,4 +1,5 @@
-﻿using TAPR_Disciplina.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using TAPR_Disciplina.Models;
 
 namespace TAPR_Disciplina.Services {
     public class DisciplinaService : IDisciplinaService {
@@ -7,23 +8,25 @@ namespace TAPR_Disciplina.Services {
             this._dbContext = dbContext;
         }
 
-        public Task<Disciplina> DeleteAsync(string id) {
+        public async Task<Disciplina> DeleteAsync(string id) {
             throw new NotImplementedException();
         }
 
-        public Task<List<Disciplina>> GetAllAsync() {
+        public async Task<List<Disciplina>> GetAllAsync() {
+            var listaDisciplinas = await _dbContext.Disciplinas.ToListAsync();
+            return listaDisciplinas;
+        }
+
+        public async Task<Disciplina> GetByIdAsync(string id) {
+            var disciplina = await _dbContext.Disciplinas.Where(c => c.idDisciplina.Equals(new Guid(id))).FirstOrDefaultAsync();
+            return disciplina;
+        }
+
+        public async Task<Disciplina> saveNewAsync(Disciplina disciplina) {
             throw new NotImplementedException();
         }
 
-        public Task<Disciplina> GetByIdAsync(string id) {
-            throw new NotImplementedException();
-        }
-
-        public Task<Disciplina> saveNewAsync(Disciplina disciplina) {
-            throw new NotImplementedException();
-        }
-
-        public Task<Disciplina> updateAsync(string id, Disciplina disciplina) {
+        public async Task<Disciplina> updateAsync(string id, Disciplina disciplina) {
             throw new NotImplementedException();
         }
     }
