@@ -58,6 +58,8 @@ namespace TAPR_Disciplina.Models {
                 .HasPartitionKey(o => o.idDisciplina);
             modelBuilder.Entity<Disciplina>()
                 .HasKey(c => c.idDisciplina);
+            modelBuilder.Entity<Disciplina>()
+                .HasOne<Curso>(o => o.curso);
         }
     
     }
