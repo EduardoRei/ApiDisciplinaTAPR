@@ -7,5 +7,9 @@ namespace TAPR_Disciplina.Services {
         Task<Disciplina> saveNewAsync(Disciplina disciplina);
         Task<Disciplina> updateAsync(string id, Disciplina disciplina);
         Task<Disciplina> DeleteAsync(string id);
+        Task<Professor> GetProfessorByIdAsync(string id);
+        Task<Curso> GetCursoByIdAsync(string id);
+        
+
     }
 }

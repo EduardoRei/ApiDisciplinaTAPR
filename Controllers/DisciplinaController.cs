@@ -31,10 +31,21 @@ namespace TAPR_Disciplina.Controllers {
         }
 
         [HttpPost()]
-        public async Task<IResult> InsertNew(Disciplina disciplina) {
+        public async Task<IResult> InsertNew(string nomeDisciplina,string cargaHoraria, string diasAula, string idProfessor, string idCurso) {
+            var professor = await _service.GetProfessorByIdAsync(idProfessor);
+            if (professor == null){
+                return Results.BadRequest();
+            }
+            var curso = await _service.GetCursoByIdAsync(idCurso);
+            if(curso == null){
+                return Results.BadRequest();
+            }
+            Guid aux = new Guid();
+            var disciplina = new Disciplina(aux, nomeDisciplina,cargaHoraria,diasAula,professor,curso);
             if (disciplina == null) {
                 return Results.BadRequest();
             }
+            
             await _service.saveNewAsync(disciplina);
 
             return Results.Ok(disciplina);

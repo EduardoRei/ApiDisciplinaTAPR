@@ -8,5 +8,19 @@
         public Professor professor { get; set; }
         public Curso curso { get; set; }
 
+
+        public Disciplina()
+        {
+            
+        }
+        public Disciplina(Guid _idDisciplina, string _nomeDisciplina, string _cargaHoraria, string _diasAula, Professor _professor, Curso _curso){
+            this.idDisciplina = _idDisciplina;
+            this.nomeDisciplina = _nomeDisciplina;
+            this.cargaHoraria = _cargaHoraria;
+            this.diaAula = _diasAula;
+            this.professor = _professor;
+            this.curso = _curso;
+        }
+
     }
 }
