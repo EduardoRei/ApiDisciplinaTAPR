@@ -49,7 +49,16 @@ namespace TAPR_Disciplina.Services {
         }
 
         public async Task<Disciplina> updateAsync(string id, Disciplina disciplina) {
-            throw new NotImplementedException();
+            var disciplinaAntiga = await _dbContext.Disciplinas.Where(c => c.idDisciplina.Equals(new Guid(id))).FirstOrDefaultAsync();
+            if(disciplinaAntiga != null){
+                disciplinaAntiga.nomeDisciplina = disciplina.nomeDisciplina;
+                disciplinaAntiga.cargaHoraria = disciplina.cargaHoraria;
+                disciplinaAntiga.diaAula = disciplina.diaAula;
+                disciplinaAntiga.professor = disciplina.professor;
+                disciplinaAntiga.curso = disciplina.curso;
+                await _dbContext.SaveChangesAsync();
+            }
+            return disciplinaAntiga;
         }
     }
 }

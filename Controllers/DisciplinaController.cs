@@ -2,6 +2,8 @@
 using TAPR_Disciplina.Models;
 using TAPR_Disciplina.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Cosmos.Serialization.HybridRow;
+using Microsoft.Azure.Cosmos.Linq;
 
 
 namespace TAPR_Disciplina.Controllers {
@@ -33,12 +35,17 @@ namespace TAPR_Disciplina.Controllers {
         [HttpPost()]
         public async Task<IResult> InsertNew(string nomeDisciplina,string cargaHoraria, string diasAula, string idProfessor, string idCurso) {
             var professor = await _service.GetProfessorByIdAsync(idProfessor);
-            if (professor == null){
-                return Results.BadRequest();
-            }
             var curso = await _service.GetCursoByIdAsync(idCurso);
+            
+            if(professor == null && curso == null){
+                return Results.BadRequest("O professorId e o cursoID informados não existem!");
+            }
+            if (professor == null){
+                return Results.BadRequest("O professorId informado, não existe!");
+            }
+
             if(curso == null){
-                return Results.BadRequest();
+                return Results.BadRequest("O cursoId informado, não existe!");
             }
             Guid aux = new Guid();
             var disciplina = new Disciplina(aux, nomeDisciplina,cargaHoraria,diasAula,professor,curso);
@@ -52,11 +59,29 @@ namespace TAPR_Disciplina.Controllers {
         }
 
         [HttpPut("{id}")]
-        public async Task<IResult> Update(string id, Disciplina disciplina) {
+        public async Task<IResult> Update(string id, string nomeDisciplina,string cargaHoraria, string diasAula, string idProfessor, string idCurso) {
+            var disciplina = await _service.GetByIdAsync(id);
             if (disciplina == null || id.Equals(String.Empty)) {
                 return Results.BadRequest();
             }
+            var professor = await _service.GetProfessorByIdAsync(idProfessor);
+            var curso = await _service.GetCursoByIdAsync(idCurso);
+            if (nomeDisciplina != null && nomeDisciplina != "" && nomeDisciplina != " "){
+                disciplina.nomeDisciplina = nomeDisciplina;
+            }            
+            if(cargaHoraria != null && cargaHoraria != "" && cargaHoraria != " "){
+                disciplina.cargaHoraria = cargaHoraria;
+            }
+            if(diasAula != null && diasAula != "" && diasAula != " "){
+                disciplina.diaAula = diasAula;
+            }
+            if(professor != null ){
+                disciplina.professor = professor;
 
+            }
+            if(curso != null ){
+                disciplina.curso = curso;
+            }
             disciplina = await _service.updateAsync(id, disciplina);
 
             if (disciplina == null) {
