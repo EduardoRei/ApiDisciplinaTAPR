@@ -1,11 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TAPR_Disciplina.Models;
+using Dapr.Client;
 
 namespace TAPR_Disciplina.Services {
     public class DisciplinaService : IDisciplinaService {
         private RepositoryDbContext _dbContext;
-        public DisciplinaService(RepositoryDbContext dbContext) {
+        private IConfiguration _configuration;
+        private DaprClient _daprClient;
+        public DisciplinaService(RepositoryDbContext dbContext, IConfiguration configuration) {
             this._dbContext = dbContext;
+            this._configuration = configuration;
+            this._daprClient = new DaprClientBuilder().Build();
         }
 
         public async Task<Professor> GetProfessorByIdAsync(string id)
@@ -44,9 +49,11 @@ namespace TAPR_Disciplina.Services {
  
             await _dbContext.Disciplinas.AddAsync(disciplina);
             await _dbContext.SaveChangesAsync();
+            await PublishUpdateAsync(disciplina);
 
             return disciplina;        
         }
+
 
         public async Task<Disciplina> updateAsync(string id, Disciplina disciplina) {
             var disciplinaAntiga = await _dbContext.Disciplinas.Where(c => c.idDisciplina.Equals(new Guid(id))).FirstOrDefaultAsync();
@@ -57,8 +64,17 @@ namespace TAPR_Disciplina.Services {
                 disciplinaAntiga.professor = disciplina.professor;
                 disciplinaAntiga.curso = disciplina.curso;
                 await _dbContext.SaveChangesAsync();
+                await PublishUpdateAsync(disciplinaAntiga);
             }
             return disciplinaAntiga;
         }
+
+
+        private async Task PublishUpdateAsync(Disciplina disciplina){
+        await this._daprClient.PublishEventAsync(_configuration["AppComponentService"], 
+                                                _configuration["AppComponentTopicDisciplinaProfessor"], 
+                                                disciplina);
+    }
+
     }
 }
