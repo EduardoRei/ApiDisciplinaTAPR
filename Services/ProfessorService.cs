@@ -58,7 +58,7 @@ namespace TAPR_Disciplina.Services
 
         public async Task<Professor> updateEventAsync(Professor professor)
         {
-            var professorAntigo = await _dbContext.Professores.Where(c => c.idProfessor.Equals(professor.id)).FirstOrDefaultAsync();
+            var professorAntigo = await _dbContext.Professores.Where(c => c.idProfessor.Equals(professor.idProfessor)).FirstOrDefaultAsync();
             if(professorAntigo == null){
                 await _dbContext.Professores.AddAsync(professor);
                 await _dbContext.SaveChangesAsync();

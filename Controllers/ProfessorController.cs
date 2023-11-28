@@ -78,7 +78,7 @@ namespace TAPR_Professor.Controllers
             if(professor == null){
                 return Results.BadRequest();
             }
-            Console.WriteLine("EVENT" + professor.nomeDoProfessor);
+            Console.WriteLine("EVENT " + professor.nomeDoProfessor);
             await _service.updateEventAsync(professor);
 
             return Results.Ok(professor);

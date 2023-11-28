@@ -1,5 +1,6 @@
 using TAPR_Disciplina.Models;
 using TAPR_Disciplina.Services;
+using Dapr;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,10 @@ builder.Services.AddScoped<ICursoService,CursoService>();
 
 
 var app = builder.Build();
+
+app.UseCloudEvents();
+
+app.MapSubscribeHandler();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
