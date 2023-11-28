@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TAPR_Disciplina.Models;
 using TAPR_Disciplina.Services;
+using Dapr;
 
 namespace TAPR_Professor.Controllers
 {
@@ -9,6 +10,7 @@ namespace TAPR_Professor.Controllers
     public class ProfessorController : ControllerBase
     {
         private IProfessorService _service;
+        private IConfiguration _configuration;
         public ProfessorController(IProfessorService service)
         {
             this._service = service;
@@ -66,6 +68,18 @@ namespace TAPR_Professor.Controllers
             if (professor == null) {
                 return Results.NotFound();
             }
+
+            return Results.Ok(professor);
+        }
+
+        [Topic(pubsubName:"servicebus-pubsub",name:"topico-equipe-2-professor")] 
+        [HttpPost("/event")]
+        public async Task<IResult> UpdateClient(Professor professor){      
+            if(professor == null){
+                return Results.BadRequest();
+            }
+            Console.WriteLine("EVENT" + professor.nomeDoProfessor);
+            await _service.updateEventAsync(professor);
 
             return Results.Ok(professor);
         }

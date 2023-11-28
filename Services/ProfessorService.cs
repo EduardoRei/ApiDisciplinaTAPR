@@ -55,5 +55,17 @@ namespace TAPR_Disciplina.Services
             }
             return professorAntigo;
         }
+
+        public async Task<Professor> updateEventAsync(Professor professor)
+        {
+            var professorAntigo = await _dbContext.Professores.Where(c => c.idProfessor.Equals(professor.id)).FirstOrDefaultAsync();
+            if(professorAntigo == null){
+                await _dbContext.Professores.AddAsync(professor);
+                await _dbContext.SaveChangesAsync();
+            } else {
+                await updateAsync(professor.idProfessor.ToString(),professor);
+            }
+            return professor;
+        }
     }
 }
