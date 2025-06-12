@@ -1,6 +1,6 @@
-using TAPR_Disciplina.Models;
 using TAPR_Disciplina.Services;
 using Dapr;
+using TAPR_Disciplina.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<RepositoryDbContext>();
+builder.Services.AddDbContext<DisciplinaDbContext>();
 builder.Services.AddScoped<IProfessorService,ProfessorService>();
 builder.Services.AddScoped<IDisciplinaService,DisciplinaService>();
 builder.Services.AddScoped<ICursoService,CursoService>();

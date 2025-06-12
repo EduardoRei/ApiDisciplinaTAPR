@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TAPR_Disciplina.Models;
 using Dapr.Client;
+using TAPR_Disciplina.Data;
 
-namespace TAPR_Disciplina.Services {
+namespace TAPR_Disciplina.Services
+{
     public class DisciplinaService : IDisciplinaService {
-        private RepositoryDbContext _dbContext;
+        private DisciplinaDbContext _dbContext;
         private IConfiguration _configuration;
         private DaprClient _daprClient;
-        public DisciplinaService(RepositoryDbContext dbContext, IConfiguration configuration) {
+        public DisciplinaService(DisciplinaDbContext dbContext, IConfiguration configuration) {
             this._dbContext = dbContext;
             this._configuration = configuration;
             this._daprClient = new DaprClientBuilder().Build();

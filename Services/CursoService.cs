@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TAPR_Disciplina.Data;
 using TAPR_Disciplina.Models;
 
 namespace TAPR_Disciplina.Services
 {
     public class CursoService : ICursoService
     {
-        private RepositoryDbContext _dbContext;
-        public CursoService(RepositoryDbContext dbContext)
+        private DisciplinaDbContext _dbContext;
+        public CursoService(DisciplinaDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
