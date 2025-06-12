@@ -1,24 +1,24 @@
-# Projeto de Tópicos Avançados de Programação  
+# Projeto de TÃ³picos AvanÃ§ados de ProgramaÃ§Ã£o  
 
-Este projeto foi desenvolvido como parte da disciplina de Tópicos Avançados de Programação, sob a mentoria do professor Walter Coan.  
+Este projeto foi desenvolvido como parte da disciplina de TÃ³picos AvanÃ§ados de ProgramaÃ§Ã£o, sob a mentoria do professor Walter Coan.  
 
 ## Objetivo  
 
-O objetivo principal do projeto foi criar serviços que compõem o funcionamento de uma faculdade. O bounded context deste projeto foi focado em **disciplinas**, abordando funcionalidades relacionadas à gestão e operação de disciplinas acadêmicas. Utilizei o banco de dados no SQL AzureCosmosDB  
+O objetivo principal do projeto foi criar serviÃ§os que compÃµem o funcionamento de uma faculdade aplicando os conceitos de **Domain-Driven Design (DDD)**. O bounded context deste projeto foi focado em **disciplinas**, abordando funcionalidades relacionadas Ã  gestÃ£o e operaÃ§Ã£o de disciplinas acadÃªmicas. Utilizei o banco de dados no SQL AzureCosmosDB  
 
 ## Arquitetura  
 
-Os serviços foram projetados para se comunicar de forma assíncrona através de mensagens utilizando o **Azure Service Bus**, garantindo escalabilidade e desacoplamento entre os componentes do sistema.  
+Os serviÃ§os foram projetados para se comunicar de forma assÃ­ncrona atravÃ©s de mensagens utilizando o **Azure Service Bus**, garantindo escalabilidade e desacoplamento entre os componentes do sistema.  
 
 ## Tecnologias Utilizadas  
 
-- **.NET 7**: Framework utilizado para o desenvolvimento dos serviços.  
-- **Azure Service Bus**: Ferramenta de mensageria para comunicação entre os serviços.  
-- **SQL AzureCosmosDB**: Banco de dados utilizado para persistência de dados.
+- **.NET 7**: Framework utilizado para o desenvolvimento dos serviÃ§os.  
+- **Azure Service Bus**: Ferramenta de mensageria para comunicaÃ§Ã£o entre os serviÃ§os.  
+- **SQL AzureCosmosDB**: Banco de dados utilizado para persistÃªncia de dados.
 
 ## Estrutura do Projeto  
 
-O projeto foi dividido em múltiplos serviços, cada um responsável por uma parte específica do domínio de disciplinas. Essa abordagem segue os princípios de arquitetura orientada a serviços (SOA).  
+O projeto foi dividido em mÃºltiplos serviÃ§os, cada um responsÃ¡vel por uma parte especÃ­fica do domÃ­nio de disciplinas. Essa abordagem segue os princÃ­pios de arquitetura orientada a serviÃ§os (SOA).  
 
 ## Professor Orientador  
 
